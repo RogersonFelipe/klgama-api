@@ -22,3 +22,6 @@ Thumbs.db
 # Logs
 logs/
 *.log
+
+# Arquivo teste JS
+testConnection
