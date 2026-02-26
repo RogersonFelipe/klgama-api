@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 require("express-async-errors");
+const authMiddleware = require("./middlewares/authMiddleware");
+const tenantMiddleware = require("./middlewares/tenantMiddleware");
+const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 
 // Middleware
@@ -18,23 +21,15 @@ app.get("/status", (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+app.use(authMiddleware);
+app.use(tenantMiddleware);
 
 // Tratamento de Erros
-app.use((err, req, res, next) => {
-  console.error("Erro:", err);
-
-  res.status(err.status || 500).json({
+app.use((req, res) => {
+  res.status(404).json({
     success: false,
-    message: err.message || "Erro Interno do servidor",
-    error: process.env.NODE_ENV === "development" ? err : {},
-  });
-
-  app.use((req, res) => {
-    res.status(404).json({
-      success: false,
-      message: "Rota não encontrada",
-    });
+    message: "Rota não encontrada",
   });
 });
-
+app.use(errorHandler);
 module.exports = app;
