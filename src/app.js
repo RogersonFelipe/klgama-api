@@ -21,8 +21,9 @@ app.get("/status", (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
-app.use(authMiddleware);
-app.use(tenantMiddleware);
+app.use("/api/auth", require("./routes/authRoutes"));
+// app.use(authMiddleware);
+// app.use(tenantMiddleware);
 
 // Tratamento de Erros
 app.use((req, res) => {
@@ -31,5 +32,5 @@ app.use((req, res) => {
     message: "Rota não encontrada",
   });
 });
-app.use(errorHandler);
+// app.use(errorHandler);
 module.exports = app;
