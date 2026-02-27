@@ -5,6 +5,7 @@ const ErrorMessages = require("../utils/errorMessages");
 class AuthController {
   static async login(req, res) {
     try {
+      const { email, senha } = req.body;
       const resultado = await AuthService.login(email, senha);
       return ResponseHadler.success(
         res,

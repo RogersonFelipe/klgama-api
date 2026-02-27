@@ -1,4 +1,3 @@
-const { schema } = require("../config/database");
 const ResponseHandler = require("../utils/responseHandler");
 const validationMiddleware = (schema) => {
   return (req, res, next) => {
@@ -21,4 +20,4 @@ const validationMiddleware = (schema) => {
     next();
   };
 };
-module.exports = validationMiddleware;
+module.exports = validationMiddleware
