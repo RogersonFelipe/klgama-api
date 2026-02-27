@@ -2,7 +2,7 @@ const Joi = require("joi");
 const Validators = {
   // Autenticação login
   loginSchema: Joi.object({
-    email: Joi.string().email().required().message({
+    email: Joi.string().email().required().messages({
       "string.email": "Email invalido",
       "any.required": "Email é obrigatório",
     }),
@@ -13,7 +13,7 @@ const Validators = {
   }),
   // Autenticação Registro
   registerSchema: Joi.object({
-    nome: Joi.string().min(3).required().message({
+    nome: Joi.string().min(3).required().messages({
       "string.min": "Nome deve ter no minimo 3 Caracters",
       "any.required": "Nome é obrigatório",
     }),
@@ -21,11 +21,11 @@ const Validators = {
       "string.email": "Email invalido",
       "any.required": "Email é obrigatório",
     }),
-    senha: Joi.string().min(6).required().message({
+    senha: Joi.string().min(6).required().messages({
       "string.min": "Senha precisa ter no minimo 6 caracteres",
       "any.required": "Senha é obrigatória",
     }),
-    cliente_id: Joi.string().uuid().required().message({
+    cliente_id: Joi.string().uuid().required().messages({
       "string.grid": "ID do cliente é invalido",
       "any.required": "ID do cliente é obrigatório",
     }),
