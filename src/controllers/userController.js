@@ -11,7 +11,7 @@ class UserController {
         email,
         senha,
         cliente_id,
-        is_Adm,
+        is_adm,
       });
 
       return ResponseHandler.created(

@@ -5,7 +5,7 @@ const ErrorMessages = require("../utils/errorMessages");
 
 class UserService {
   static async hashSenha(senha) {
-    const salt = await bcrypt.getSalt(10);
+    const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(senha, salt);
   }
 
@@ -17,7 +17,7 @@ class UserService {
     return usuario;
   }
 
-  static async criar({ nome, email, senha, cliente_id, is_Adm = false }) {
+  static async criar({ nome, email, senha, cliente_id, is_adm = false }) {
     const { data: cliente, error: erroCliente } = await supabase
       .from("cliente")
       .select("id")
@@ -46,7 +46,7 @@ class UserService {
           email,
           senha: senhaHash,
           cliente_id,
-          is_Adm,
+          is_adm,
           ativo: true,
         },
       ])
@@ -54,7 +54,7 @@ class UserService {
       .single();
     if (error) {
       console.error("Erro do SupaBase ao criar Usuario");
-      throw new error(ErrorMessages.INTERNAL_SERVER_ERROR);
+      throw new Error(ErrorMessages.INTERNAL_SERVER_ERROR);
     }
 
     return this.removerSenha(novoUsuario);
@@ -110,7 +110,7 @@ class UserService {
     }
   }
 
-  static async atualizar(id, { nome, email, ativo, is_Adm }) {
+  static async atualizar(id, { nome, email, ativo, is_adm }) {
     try {
       await this.buscarPorId(id);
       if (email) {
@@ -168,19 +168,16 @@ class UserService {
         );
       }
 
-      const { error } = await supabase
-        .from('usuario')
-        .delete()
-        .eq('id', id);
+      const { error } = await supabase.from("usuario").delete().eq("id", id);
       if (error) {
         throw new Error(ErrorMessages.INTERNAL_SERVER_ERROR);
       }
 
-      return { message: 'Usuário deletado com sucesso' };
+      return { message: "Usuário deletado com sucesso" };
     } catch (erro) {
-        throw erro
+      throw erro;
     }
   }
 }
 
-module.exports = UserService
+module.exports = UserService;

@@ -40,7 +40,7 @@ const Validators = {
   }),
   updateClientSchema: Joi.object({
     nome: Joi.string().min(3).optional(),
-    ativo: Joi.boolean().optional,
+    ativo: Joi.boolean().optional(),
   }),
   // Usuarios
   createUserSchema: Joi.object({
@@ -48,13 +48,13 @@ const Validators = {
     email: Joi.string().email().required(),
     senha: Joi.string().min(6).required(),
     cliente_id: Joi.string().uuid().required(),
-    is_Adm: Joi.boolean().optional(),
+    is_adm: Joi.boolean().optional(),
   }),
   updateUserSchema: Joi.object({
     nome: Joi.string().min(3).optional(),
     email: Joi.string().optional(),
     ativo: Joi.boolean().optional(),
-    is_Adm: Joi.boolean().optional(),
+    is_adm: Joi.boolean().optional(),
   }),
   // Demanda
   createDemandSchema: Joi.object({
