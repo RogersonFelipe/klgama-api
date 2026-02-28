@@ -22,8 +22,12 @@ app.get("/status", (req, res) => {
   });
 });
 app.use("/api/auth", require("./routes/authRoutes"));
-// app.use(authMiddleware);
-// app.use(tenantMiddleware);
+
+app.use(authMiddleware);
+app.use(tenantMiddleware);
+
+// Rotas Protegidas
+app.use("/api/clientes", require("./routes/clientRoutes"));
 
 // Tratamento de Erros
 app.use((req, res) => {
@@ -32,5 +36,6 @@ app.use((req, res) => {
     message: "Rota não encontrada",
   });
 });
-// app.use(errorHandler);
+
+app.use(errorHandler);
 module.exports = app;

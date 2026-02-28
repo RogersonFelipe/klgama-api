@@ -6,18 +6,29 @@ const ErrorMessages = require("../utils/errorMessages");
 const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
+    console.log("headerAuthorization recebido:", authHeader);
+
     if (!authHeader) {
       return ResponseHandler.unauthorized(res, ErrorMessages.MISSING_TOKEN);
     }
-    const token = authHeader.split("")[1];
-    if (!token) {
+
+    const parts = authHeader.split(" ");
+    if (parts.length !== 2) {
+      return ResponseHandler.unauthorized(res, ErrorMessages.INVALID_TOKEN);
+    }
+
+    const [scheme, token] = parts;
+    if (scheme !== "Bearer") {
+      return ResponseHandler.unauthorized(res, ErrorMessages.INVALID_TOKEN);
+    }
+    if (!token || token.trim() === "") {
       return ResponseHandler.unauthorized(res, ErrorMessages.MISSING_TOKEN);
     }
     const decoded = jwt.verify(token, jwtSecret);
     req.user = decoded;
     next();
   } catch (error) {
-    console.error("Erro na autenticação:", error);
+    console.error("Erro na autenticação:", error.message);
     return ResponseHandler.unauthorized(res, ErrorMessages.INVALID_TOKEN);
   }
 };
