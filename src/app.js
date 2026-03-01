@@ -29,6 +29,7 @@ app.use(tenantMiddleware);
 // Rotas Protegidas
 app.use("/api/clientes", require("./routes/clientRoutes"));
 app.use("/api/usuarios", require("./routes/userRoutes"));
+app.use("/api/demandas", require("./routes/demandRoutes"));
 
 // Tratamento de Erros
 app.use((req, res) => {
