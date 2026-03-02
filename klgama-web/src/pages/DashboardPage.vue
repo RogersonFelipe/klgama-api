@@ -11,7 +11,7 @@
             <div class="text-h3 text-primary">{{ clientes.length }}</div>
           </q-card-section>
           <q-card-actions>
-            <q-btn flat color="primary" label="Ver" @click="$router.push('/clientes')" />
+            <q-btn flat color="primary" label="Ver" @click="$router.push('/dashboard/clientes')" />
           </q-card-actions>
         </q-card>
       </div>
@@ -23,7 +23,7 @@
             <div class="text-h3 text-primary">{{ usuarios.length }}</div>
           </q-card-section>
           <q-card-actions>
-            <q-btn flat color="primary" label="Ver" @click="$router.push('/usuarios')" />
+            <q-btn flat color="primary" label="Ver" @click="$router.push('/dashboard/usuarios')" />
           </q-card-actions>
         </q-card>
       </div>
@@ -35,7 +35,7 @@
             <div class="text-h3 text-primary">{{ demandas.length }}</div>
           </q-card-section>
           <q-card-actions>
-            <q-btn flat color="primary" label="Ver" @click="$router.push('/demandas')" />
+            <q-btn flat color="primary" label="Ver" @click="$router.push('/dashboard/demandas')" />
           </q-card-actions>
         </q-card>
       </div>

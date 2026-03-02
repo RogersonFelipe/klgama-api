@@ -35,7 +35,8 @@ class DemandController {
 
   static async listarTodos(req, res) {
     try {
-      const demandas = await DemandService.listarTodos();
+      const usuario_id = req.user.id;
+      const demandas = await DemandService.listarPorUsuario(usuario_id);
 
       return ResponseHandler.success(
         res,

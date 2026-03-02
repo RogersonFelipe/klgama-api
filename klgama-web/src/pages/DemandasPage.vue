@@ -10,6 +10,11 @@
           {{ formatarData(props.row.due_date) }}
         </q-td>
       </template>
+      <template v-slot:body-cell-created_at="props">
+        <q-td :props="props">
+          {{ formatarDataHora(props.row.created_at) }}
+        </q-td>
+      </template>
     </q-table>
   </q-page>
 </template>
@@ -29,6 +34,10 @@ const columns = [
 
 const formatarData = (data) => {
   return new Date(data).toLocaleDateString('pt-BR')
+}
+
+const formatarDataHora = (data) => {
+  return new Date(data).toLocaleString('pt-BR')
 }
 
 onMounted(async () => {
