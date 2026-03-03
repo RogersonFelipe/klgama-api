@@ -5,8 +5,9 @@ const ErrorMessages = require("../utils/errorMessages");
 class DemandController {
   static async criar(req, res) {
     try {
-      const { descr, due_date, usuario_id } = req.body;
-      const cliente_id = req.clienteId; // Vem do tenantMiddleware
+      const { descr, due_date } = req.body;
+      const usuario_id = req.user.id;
+      const cliente_id = req.clienteId;
 
       const demanda = await DemandService.criar({
         descr,

@@ -54,10 +54,7 @@
 import { ref, onMounted } from 'vue'
 import { useQuasar } from 'quasar'
 import client from '../api/client'
-import { useAuthStore } from '../stores/authStore'
-
 const $q = useQuasar()
-const authStore = useAuthStore()
 
 const demandas = ref([])
 const loading = ref(true)
@@ -96,7 +93,6 @@ const criarDemanda = async () => {
     await client.post('/demandas', {
       descr: form.value.descr,
       due_date: form.value.due_date,
-      usuario_id: authStore.user.id,
     })
     $q.notify({ type: 'positive', message: 'Demanda criada com sucesso!' })
     fecharModal()

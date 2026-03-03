@@ -66,7 +66,6 @@ const Validators = {
       "date.base": "Data de vencimento inválida",
       "any.required": "Data de vencimento é obrigatória",
     }),
-    usuario_id: Joi.string().uuid().required(),
   }),
   updateDemandsSchema: Joi.object({
     descr: Joi.string().min(5).optional(),
