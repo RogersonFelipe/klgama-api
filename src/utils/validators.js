@@ -67,7 +67,7 @@ const Validators = {
       "any.required": "Data de vencimento é obrigatória",
     }),
   }),
-  updateDemandsSchema: Joi.object({
+  updateDemandSchema: Joi.object({
     descr: Joi.string().min(5).optional(),
     due_date: Joi.date().optional(),
   }),
