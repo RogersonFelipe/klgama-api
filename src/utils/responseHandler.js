@@ -21,7 +21,7 @@ class ResponseHadler {
   }
 
   static badRequest(res, message = "Requisição invalida", errors = null) {
-    return this.error(res.message, 400, errors);
+    return this.error(res, message, 400, errors);
   }
 
   static unauthorized(res, message = "Não autorizado") {
